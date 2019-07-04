@@ -4,8 +4,10 @@ import HOME from './Components/home';
 function App() {
   return (
     <div className="App">
-      
-       <HOME/>
+      <header className="App-header">
+          <HOME/>
+      </header>
+     
       
     </div>
   );

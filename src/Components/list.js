@@ -1,40 +1,55 @@
 import React, { Component } from 'react'
-import {
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText,
-    IconButton
-  } from "@material-ui/core";
+
+import ListItem from '@material-ui/core/ListItem';
+
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 export default class list extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             main:''
-        }
-    }
+  
   
     render() {
         
-        console.log(list);
+        console.log(this.props);
+        const {date, actual,max,min,time,icon,descrip}=this.props;
         return (
-            <div>
-             <GridList cellHeight={250} style={{ height: '800px' , width:'800px'}}>
-              {this.state.gribList.map(tile => (
-                <GridListTile key={tile.id  }>
-                  <img src={tile.img}  alt={tile.name} />
-                  <GridListTileBar
-                    name={tile.name}
-                    subtitle={<span>by: {tile.Owner}</span>}
-                    actionIcon={
-                      <IconButton className="icon" onClick={(id)=>this.handleClickOpen(tile.id)}>
-                        <InfoIcon />
-                      </IconButton>
-                    }
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+              <img src={'http://openweathermap.org/img/wn/'+icon+'@2x.png'}  alt={descrip} />
+              <ListItemText
+                primary={descrip}
+                secondary={<React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      color="textPrimary"
+                      style={{  display: 'inline'}}
+                    >
+                      {<span>{time}</span>}
+                    </Typography>
+                    
+                  </React.Fragment>}
                   />
-                </GridListTile>
-
-            </div>
+              </ListItemAvatar>
+              
+              <ListItemText
+                primary={descrip}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      color="textPrimary"
+                      style={{  display: 'inline'}}
+                    >
+                      {<span>Max:{max}<br/>Min:{min}<br/>Date:{date}</span>}
+                    </Typography>
+                    
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
         )
     }
 }
